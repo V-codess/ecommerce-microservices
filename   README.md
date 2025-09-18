@@ -8,13 +8,13 @@ This project is a full-featured **E-commerce backend** built using a **Microserv
 
 | Service       | Description                                 | Port  |
 |---------------|---------------------------------------------|-------|
-| `api-gateway` | Entry point for all client requests         | 5000  |
-| `auth-service`| Handles user registration, login, auth      | 8080  |
-| `product-service` | Manages product listings, search, etc | 8081  |
-| `order-service` | Manages order creation, status, etc     | 8082  |
-| `cart-service`  | Manages user shopping carts               | 8083  |
-| `payment-service` | Handles payment processing             | 8084  |
-| `inventory-service` | Manages stock & availability        | 8085  |
+| `api-gateway` | Entry point for all client requests         | 8080  |
+| `auth-service`| Handles user registration, login, auth      | 8081  |
+| `product-service` | Manages product listings, search, etc | 8082  |
+<!-- | `order-service` | Manages order creation, status, etc     | 8082  | -->
+<!-- | `cart-service`  | Manages user shopping carts               | 8083  | -->
+<!-- | `payment-service` | Handles payment processing             | 8084  | -->
+<!-- | `inventory-service` | Manages stock & availability        | 8085  | -->
 <!-- | `notification-service` | Sends emails, SMS, alerts        | 5006  | -->
 
 ---
@@ -23,9 +23,9 @@ This project is a full-featured **E-commerce backend** built using a **Microserv
 
 - **Programming Languages:** Node.js / Express / Typescript
 - **Database:** MongoDB / Mongoose
-- **API Gateway:** Express Gateway / NGINX / Custom
+- **API Gateway:** NGINX 
 - **Authentication:** JWT (JSON Web Tokens)
-- **Service Communication:** REST / gRPC / RabbitMQ / Kafka
+- **Service Communication:** REST 
 - **Containerization:** Docker, Docker Compose
 
 ---
@@ -37,10 +37,10 @@ ecommerce-microservices/
 ├── api-gateway/
 ├── auth-service/
 ├── product-service/
-├── order-service/
+<!-- ├── order-service/
 ├── cart-service/
 ├── payment-service/
-├── inventory-service/
+├── inventory-service/ -->
 <!-- ├── notification-service/ -->
 └── docker-compose.yml
 
@@ -49,8 +49,6 @@ Each folder contains its own independent microservice, including:
 - Source code
 - Dockerfile
 - Environment configs
-- Unit tests
-
 ---
 
 ## 🚀 Getting Started
