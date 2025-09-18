@@ -5,6 +5,7 @@ export interface IUser{
  name: string;
  password: string;
  refreshToken: string;
+ role: string
 }
 const schema = new Schema<IUser>({
   email:{
@@ -19,6 +20,10 @@ const schema = new Schema<IUser>({
   },
   refreshToken:{
     type: String
+  },
+  role:{
+    type: String,
+    enum: ["0", "1"] // 0 - customer, 1 - admin
   }
 });
 

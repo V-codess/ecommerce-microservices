@@ -18,7 +18,7 @@ export const login = async (req: Request, res: Response) => {
       throw "Invalid password";
     }
     const token = jwt.sign(
-      { userId: findUser._id, email: findUser.email },
+      { userId: findUser._id, email: findUser.email, role: findUser.role },
       process.env.JWT_SECRET as string,
       { expiresIn: "1h" }
     );
@@ -43,7 +43,7 @@ export const login = async (req: Request, res: Response) => {
 
 export const register = async (req: Request, res: Response) => {
   try {
-    const { name, password, email } = req.body;
+    const { name, password, email, role } = req.body;
     const user = await Users.findOne({ email });
     if (user) {
       return res.status(404).json({ message: "User already exists!" });
@@ -54,6 +54,7 @@ export const register = async (req: Request, res: Response) => {
       email,
       password: hashedPassword,
       name,
+      role
     });
     await newUser.save();
     return res

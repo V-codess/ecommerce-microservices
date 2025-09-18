@@ -16,4 +16,4 @@ ENV PORT=8080
 EXPOSE ${PORT}
 
 # Start the app
-CMD ["npm", "run", "dev"]
+CMD ["npx", "nodemon", "--watch", ".", "--exec", "npx ts-node app.ts"]
