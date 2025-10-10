@@ -9,6 +9,7 @@ services:
     depends_on:
       - auth-service
       - product-service
+      - order-service
 
   auth-service:
     build: ./auth-services
@@ -29,7 +30,27 @@ services:
       - ./product-service/.env
     depends_on:
       - mongo-product
+  order-service:
+    build: ./order-service
+    container_name: order-service
+    ports:
+      - "8083:8083"
+    env_file:
+      - ./order-service/.env
+    depends_on:
+      - postgres
 
+  postgres:
+    image: postgres:15
+    environment:
+      PGHOST: postgres 
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ordersdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
   mongo-auth:
     image: mongo
     container_name: mongo-auth
@@ -49,3 +70,7 @@ services:
 volumes:
   mongo-auth-data:
   mongo-product-data:
+  postgres_data:
+
+
+
