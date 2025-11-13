@@ -12,7 +12,7 @@ on:
     - cron: "0 2 * * *" # minutes hours month days week
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
 
     services:
@@ -41,33 +41,46 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 16
 
       - name: Install Dependencies (Auth)
         run: |
-          cd auth-service
-          npm ci
+          cd auth-services
+          npm install
 
       - name: Install Dependencies (Product)
         run: |
           cd product-service
-          npm ci
+          npm install
 
       - name: Install Dependencies (Order)
         run: |
           cd order-service
-          npm ci
+          npm install
 
       - name: Install Dependencies (Cart)
         run: |
           cd cart-service
-          npm ci
-          # optional
+          npm install
 
-      - name: Run Tests
-        run: |
-          echo "✅ Placeholder - add jest/mocha test script here later"
+      - name: Notify whenever the build fails
+        if: failure()
+        run: echo "Build failed!!"
 
-      - name: Check Docker Build
-        run: |
-          docker compose build
+  tests:
+      runs-on: ubuntu-latest
+      needs: build
+      steps:
+        - name: Checkoout code
+          uses: actions/checkout@v5
+
+        - name: Runs test
+          run: npm test
+
+        - name: Run Tests
+          run: |
+           echo "✅ Placeholder - add jest/mocha test script here later"
+
+        - name: Check Docker Build
+          run: |
+           docker compose build
