@@ -14,24 +14,3 @@ This project demonstrates scalable architecture, JWT authentication, role-based 
 | Language          | **TypeScript**                                             |
 | CI/CD             | **GitHub Actions**                                         |
 
-## STEPS TO USE ON YOUR PC
-
-1. Clone the Repository
-git clone https://github.com/V-codess/ecommerce-microservices.git
-cd ecommerce-microservices
-2. Create .env Files for Each Service
-PORT=4001
-MONGO_URI=mongodb://mongo:27017/authdb
-JWT_SECRET=your_jwt_secret
-JWT_REFRESH_SECRET=your_refresh_secret
---- Postgres ---
-PORT=4003
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=postgres
-POSTGRES_DB=orders
-POSTGRES_HOST=postgres
-POSTGRES_PORT=5432
-JWT_SECRET=your_jwt_secret
-3. Run with Docker Compose
-docker-compose up --build
-
