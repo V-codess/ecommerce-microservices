@@ -1,0 +1,73 @@
+name: CI Pipeline - Microservices
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+  
+  schedule: 
+    - cron: "0 2 * * *" # minutes hours month days week
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    services:
+      mongo:
+        image: mongo:5
+        ports:
+          - 27017:27017
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: orders
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies (Auth)
+        run: |
+          cd auth-service
+          npm ci
+
+      - name: Install Dependencies (Product)
+        run: |
+          cd product-service
+          npm ci
+
+      - name: Install Dependencies (Order)
+        run: |
+          cd order-service
+          npm ci
+
+      - name: Install Dependencies (Cart)
+        run: |
+          cd cart-service
+          npm ci
+          # optional
+
+      - name: Run Tests
+        run: |
+          echo "✅ Placeholder - add jest/mocha test script here later"
+
+      - name: Check Docker Build
+        run: |
+          docker compose build
