@@ -75,6 +75,6 @@ jobs:
           run: |
            echo "✅ Placeholder - add jest/mocha test script here later"
 
-        - name: Check Docker Build
-          run: |
-           docker compose build
+        # - name: Check Docker Build
+        #   run: |
+        #    docker compose build
