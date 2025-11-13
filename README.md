@@ -14,24 +14,7 @@ This project demonstrates scalable architecture, JWT authentication, role-based 
 | Language          | **TypeScript**                                             |
 | CI/CD             | **GitHub Actions**                                         |
 
-                    ┌────────────────┐
-                    │   API Gateway  │  ← Nginx routes requests
-                    └───────┬────────┘
-                            │
-     ┌──────────────────────┼──────────────────────────┐
-     │                      │                          │
-┌────▼───────┐       ┌──────▼────────┐          ┌──────▼────────┐
-│ Auth Svc   │       │ Product Svc   │          │ Order Svc     │
-│ MongoDB     │       │ MongoDB       │          │ PostgreSQL     │
-│ JWT / RBAC  │       │ Product CRUD  │          │ Create Orders  │
-└─────────────┘       └───────────────┘          └───────────────┘
-                            │
-                            │ RabbitMQ Events
-                            ▼
-                     ┌────────────┐
-                     │ Cart Svc   │
-                     │ MongoDB    │
-                     └────────────┘
+## STEPS TO USE ON YOUR PC
 
 1. Clone the Repository
 git clone https://github.com/V-codess/ecommerce-microservices.git
@@ -41,7 +24,7 @@ PORT=4001
 MONGO_URI=mongodb://mongo:27017/authdb
 JWT_SECRET=your_jwt_secret
 JWT_REFRESH_SECRET=your_refresh_secret
-## Postgres
+--- Postgres ---
 PORT=4003
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres
